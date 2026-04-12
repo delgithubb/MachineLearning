@@ -57,9 +57,9 @@ def train_loop(dataloader, model, loss_fn,optimiser):
         if batch %100==0:
             loss,current_data = loss.item(), batch* batch_size + len(x)
             img = dataloader.dataset[current_data][0]
-            plt.imshow(img.permute(1,2,0))
-            plt.axis('off')
-            plt.show()
+            #        plt.imshow(img.permute(1,2,0))
+            #        plt.axis('off')
+            #        plt.show()
             print(f"loss: {loss:>7f}  [{current_data:>5d}/{size:>5d}]")
 
 def test_loop(dataloader,model,loss_fn):
