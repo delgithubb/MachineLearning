@@ -31,7 +31,7 @@ class NeuralNet(nn.Module):
             nn.ReLU(),
             nn.Linear(44,512),
             nn.ReLU(),
-            nn.Linear(512,10)
+            nn.Linear(512,10) # neural network stack, layer 1 28*28 neurons, level 2 44 neurons level 3 512 neurons level 4 10 neuros as there are 10 classifications
         )
     def forward(self,x):
         x = self.flatten(x)
@@ -78,10 +78,10 @@ def test_loop(dataloader,model,loss_fn):
 
 loss_fn = nn.CrossEntropyLoss() # loss functin is the mean of the square differences
 optimiser =torch.optim.SGD(model.parameters(),lr =learning_rate) #use stoic GD to minimize loss
-epochs =10 #loop through data set 10 times
+epochs =100 #loop through data set 10 times
 for test in range(epochs):
     print(f"Epoch {test + 1}\n-------------------------------")
     train_loop(train_dl, model, loss_fn, optimiser)
     test_loop(test_dl, model, loss_fn)
 
-print("Done!")
+torch.save(model.state_dict(), 'modelweight100.pth')
